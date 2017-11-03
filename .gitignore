@@ -1,5 +1,6 @@
 bin/
 pkg/
 src/webupload/webupload
+src/webupload/deploy.sh
 src/webupload/uploads/
 src/webupload/uploads-test/
