@@ -73,6 +73,9 @@ func (this *UploadController) Webupload() {
 			bWriter.Flush()
 
 		}(prefix, filename, dir, ext)
+	} else if num > count {
+		cache.Delete(filename)
+		this.SendResJsonp(101, "fail", "uplad fail, please upload again!")
 	}
 
 	help.Log.Info("filename:" + filename + " chunks:" + chunks + " chunk:" + chunk)
