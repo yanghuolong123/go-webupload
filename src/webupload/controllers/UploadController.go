@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -47,7 +46,6 @@ func (this *UploadController) Webupload() {
 	y, m, d := help.Date()
 	dir = dir + fmt.Sprintf("%d/%d/%d/", y, m, d)
 	if num == count {
-		log.Println("==================== num:", num)
 		go func(prefix, filename, dir, ext string) {
 			cache.Delete(filename)
 			outDir := "" + dir
@@ -71,7 +69,6 @@ func (this *UploadController) Webupload() {
 						bWriter.Write(buffer[:readCount])
 					}
 				}
-				log.Println("==================== i:", i)
 			}
 			bWriter.Flush()
 
@@ -79,5 +76,5 @@ func (this *UploadController) Webupload() {
 	}
 
 	help.Log.Info("filename:" + filename + " chunks:" + chunks + " chunk:" + chunk)
-	this.SendResJsonp(0, "ok", dir+filename)
+	this.SendResJsonp(0, "ok", "uploads/"+fmt.Sprintf("%d/%d/%d/", y, m, d)+filename)
 }
