@@ -1,0 +1,5 @@
+bin/
+pkg/
+src/webupload/webupload
+src/webupload/uploads/
+src/webupload/uploads-test/
