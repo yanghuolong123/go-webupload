@@ -81,3 +81,21 @@ func (this *UploadController) Webupload() {
 	help.Log.Info("filename:" + filename + " chunks:" + chunks + " chunk:" + chunk)
 	this.SendResJsonp(0, "ok", "uploads/"+fmt.Sprintf("%d/%d/%d/", y, m, d)+filename)
 }
+
+func (this *UploadController) SendResJsonp(code int, msg string, data interface{}) {
+	m := make(map[string]interface{})
+	m["jsonrpc"] = "2.0"
+	m["success"] = true
+	if code != 0 {
+		m["success"] = false
+	}
+	m["code"] = code
+	m["msg"] = msg
+	if data != nil {
+		m["data"] = data
+	}
+
+	this.Data["json"] = m
+	this.ServeJSON()
+	this.StopRun()
+}

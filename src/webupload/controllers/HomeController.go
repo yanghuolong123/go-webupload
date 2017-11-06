@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"runtime"
 	"yhl/help"
 )
 
@@ -10,7 +11,8 @@ type HomeController struct {
 
 func (this *HomeController) Get() {
 	help.Log.Info(this.Ctx.Input.Domain())
-	this.SendRes(0, "success", nil)
+	cpunum := runtime.NumCPU()
+	this.SendRes(0, "success", cpunum)
 }
 
 func (this *HomeController) Post() {
