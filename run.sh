@@ -10,6 +10,7 @@ echo "go新库路径:"$GOPATH
 
 cd ./src/webupload
 bee run 
+#bee run  -gendoc=true -downdoc=true
 
 export GOPATH="$OLDGOPATH"
 
